@@ -33,3 +33,5 @@ class RegistrationPage():
     
     def has_empty_fields_error(self):
         return self.page.locator("text=All fields are required").is_visible()
+
+    
