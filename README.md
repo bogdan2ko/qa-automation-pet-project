@@ -25,7 +25,8 @@ Automation of user registration testing
 2. **Serve the report:**
     allure serve allure-results
 
-✅ Test Cases
+##  Test Cases
+
 ✅ UI Positive: successful registration with redirect
 
 ❌ UI Negative: empty fields, invalid email, duplicate email
