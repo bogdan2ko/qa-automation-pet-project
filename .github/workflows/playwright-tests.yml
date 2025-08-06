@@ -23,13 +23,19 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          python -m playwright install --with-deps
           pip install allure-pytest
+          python -m playwright install --with-deps
 
       - name: 🧪 Run Playwright tests
         env:
           PYTHONPATH: .
         run: pytest --alluredir=allure-results
+
+      - name: 🛠 Install Allure CLI
+        run: |
+          sudo apt-add-repository ppa:qameta/allure -y
+          sudo apt-get update
+          sudo apt-get install allure
 
       - name: 📄 Generate Allure report
         run: allure generate allure-results -o allure-report --clean
@@ -45,3 +51,8 @@ jobs:
         with:
           name: allure-report
           path: allure-report
+      - name: 📂 List contents of allure-results
+        run: ls -l allure-results
+
+      - name: 📂 List contents of allure-report
+        run: ls -l allure-report
