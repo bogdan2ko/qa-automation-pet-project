@@ -24,12 +24,22 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           python -m playwright install --with-deps
+          pip install allure-pytest
 
       - name: 🧪 Run Playwright tests
         run: pytest --alluredir=allure-results
 
-      - name: 📤 Upload Allure results (artifact)
+      - name: 📄 Generate Allure report
+        run: allure generate allure-results -o allure-report --clean
+
+      - name: 📤 Upload Allure results (raw)
         uses: actions/upload-artifact@v4
         with:
           name: allure-results
           path: allure-results
+
+      - name: 📤 Upload Allure HTML report
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-report
+          path: allure-report
